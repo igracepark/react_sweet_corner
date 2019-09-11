@@ -3,8 +3,6 @@ import './about.scss';
 
 export default props => (
     <div>
-        <h1 className='center'>
-            About Page
-        </h1>
+        <h1 className="center brown">About Page</h1>
     </div>
-)
+);
