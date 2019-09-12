@@ -1,49 +1,13 @@
-// .brown {
-//     color:  #754b23;
-// }
-
-// .footer {
-//     background-color: #06b4af;
-//     height: 80px;
-//     z-index: -1;
-// }
-
-// .flexContainer {
-//     display: flex;
-//     justify-content: space-around;
-//     align-items: baseline;
-
-//         div {
-//             margin: 0;
-//             color: white;
-//             padding-bottom: 5%;
-//     }
-// }
-
-// .footerDots {
-//     height: 50px;
-//     padding-top: 1%;
-// }
-
-// .phone {
-// background-image: url(/phone.png);
-// background-size: contain;
-// height: 20px;
-// width: 20px;
-// background-repeat: no-repeat;
-// }
-
 footer{
     height: 80px;
     padding-top: 20px;
     background-color: #06b4af;
     color: white;
+
     .dots{
-    // background-image: url('../../assets/images/dots-footer.png');
-    // background-repeat: no-repeat;
-    // background-position: 40px 0;
     padding-left: 5%;
     }
+
     .phoneimg{
       background-image: url('../../assets/images/phone.png');
       background-repeat: no-repeat;

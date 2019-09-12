@@ -8,10 +8,17 @@ export default props => {
   return (
       <div>
           <footer className='row'>
-            <div className='dots col-md-3 '> <img src={footerDots}/></div>
-            <div className ='col-md-6 mt-4 center'>Copyright&copy; {year} SweetCorner All rights reserved</div>
-            <div className ='col-md-3 center phoneimg'>
-            800 264 2099</div>
+                <div className='dots col-md-3 '> 
+                <img src={footerDots}/>
+                </div>
+                <div 
+                className ='col-md-6 mt-4 center'>
+                Copyright&copy; {year} SweetCorner All rights reserved
+                </div>
+                <div 
+                className ='col-md-3 center phoneimg'>
+                800 264 2099
+                </div>
           </footer>
       </div>
   );
