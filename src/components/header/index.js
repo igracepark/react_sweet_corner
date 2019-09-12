@@ -5,7 +5,7 @@ import header from '../../assets/images/header.png';
 
 export default props => (
     <div>
-        <img src={header}/>
+        <img className='headerImg' src={header}/>
         <Nav className='navBar'/>
         <div className='logobg' />
         <div className="allura center">We deliver cupcakes for the important events in your life!</div>
