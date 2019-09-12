@@ -15,6 +15,7 @@
     "url": "https://github.com/grac3park/react_sweet_corner.git"
   },
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
