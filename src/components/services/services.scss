@@ -1,3 +1,18 @@
-.brown {
-    color:  #754b23;
+.strips1b {
+    background-image: url('../../assets/images/strips1.png');
+    height: 100%;
+    width: 160px;
+    background-repeat: repeat;
+}
+
+.dots1b {
+    top: 12%;
+    position: absolute;
+}
+
+.box2 {
+    max-width: 100%;
+    height: auto;
+    padding-top: 2%;
+    padding-bottom: 5%;
 }
