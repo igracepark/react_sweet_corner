@@ -8,6 +8,7 @@ import Header from './header';
 import Home from './home';
 import Services from './services';
 
+
 const App = () => (
     <div className='app'>
         <div className='container'>
@@ -17,7 +18,7 @@ const App = () => (
             <Route path='/contact' component={Contact} />
             <Route path='/' exact component={Home} />
             <Route path='/services' component={Services} />
-
+            
             <Footer/>
         </div>
     </div>

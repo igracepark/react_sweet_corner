@@ -1,0 +1,56 @@
+.inputField {
+    width: 310px;
+    height: 35px; 
+    color: gray;
+    margin-bottom: .5rem;
+    border: none;
+    border-radius: 2px;
+
+    &[name='name'] {
+        background-color: #e86b35;
+    }
+
+    &[name='subject'] {
+        background-color: #e86b35;
+    }
+
+    &[name='email'] {
+        background-color: #f6b53e;
+    }
+    
+    &[name='message'] {
+        background-color: #f6b53e;
+        width: 310px;
+        height: 115px;
+    }
+
+    &[name='phone'] {
+        background-color: #06b4af;
+    }
+}
+
+.button {
+    appearance: none;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    background:  #06b4af;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    margin: 0.5rem 0;
+    margin-left: 1rem;
+
+    &[type='reset'] {
+        color: #06b4af;
+        border: 1px solid #06b4af;
+        background: transparent;
+    }
+}
+
+.brown {
+    color: #754b23;
+    padding-right: 45%;
+}
+
+
