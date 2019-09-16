@@ -16,5 +16,8 @@ export default props => (
         <li>
             <Link to='/contact'>CONTACT</Link>
         </li>
+        <li>
+            <Link to='/products'>PRODUCTS</Link>
+        </li>
     </ul>
 )

@@ -7,7 +7,7 @@ export default class Schedule extends Component {
         schedule:[]
     }
 
-componentDidMount() {
+componentDidMount = () => {
     const url= 'http://localhost:3000/data/schedule.json'
     axios.get(url).then((response) => {
         console.log('Response: ', response);
