@@ -6,6 +6,9 @@ img {
     border-radius: 8px;
 }
 
-.bg-1 {
-    background-color: #ffe9ec,
+.hov1 {
+    &:hover {
+    background-color:lightpink;
+    border-radius: 15px;
+}
 }

@@ -7,7 +7,7 @@ export default (props) => {
     console.log('props: ', props);
         return (
        
-            <div className='product-item col-md-4 center'>
+            <div onClick={props.goToDetails} className='hov1 product-item col-md-4 center'>
                 <h5 className='cupcakeTitle'>{name}</h5>
                 <img src={thumbnail.url}/>
                 <div>{caption}</div>
