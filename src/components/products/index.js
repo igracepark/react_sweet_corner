@@ -3,7 +3,6 @@ import './products.scss';
 import {connect} from 'react-redux';
 import {getAllProducts} from '../../actions';
 import ProductItem from './product_item';
-// import './products.scss';
 
 class Products extends Component {
     componentDidMount = () => {
