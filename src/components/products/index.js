@@ -3,11 +3,15 @@ import './products.scss';
 import {connect} from 'react-redux';
 import {getAllProducts} from '../../actions';
 import ProductItem from './product_item';
-import './products.scss';
+// import './products.scss';
 
 class Products extends Component {
     componentDidMount = () => {
         this.props.getAllProducts();
+}
+
+    goToDetails = id => {
+        this.props.history.push(`/products/${id}`);
 }
 
     render() {
@@ -17,11 +21,15 @@ class Products extends Component {
         // In the render method map over the products array, to create an array of ProductItem components. Use the spread, ..., operator to pass every key of the product object into the <ProductItem> component as a prop. Use the product id to set the key prop. Remember to save the array of <ProductItem /> components into a constant
 
         const productItems = products.map((product) => {
-            return <ProductItem {...product} key={Products.id}/>
+            return <ProductItem 
+                        {...product} 
+                        key={Products.id}
+                        goToDetails={this.goToDetails.bind(this, product.id)}
+                        />
 });
 
         return (
-            <div className='products bg-1'>
+            <div className='products'>
                 <h3 className='center'>
                    Cupcakes
                    </h3>
