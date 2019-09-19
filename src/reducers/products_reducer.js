@@ -19,6 +19,13 @@ export default (state = DEFAULT_STATE, action) => {
                 details: action.product
             }
 
+            // The new case should set the details property in the state to null, without changing any other part of the state
+        case types.CLEAR_PRODUCT_DETAILS:
+            return {
+                ...state,
+                details: null
+            }
+
         default:
             return state;
     }

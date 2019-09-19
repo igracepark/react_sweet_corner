@@ -28,3 +28,9 @@ export const getProductDetails = productId => async dispatch => {
         console.log('getAllProducts error: ', error);
     }
 }
+
+export const clearProductDetails = () => {
+    return {
+            type: types.CLEAR_PRODUCT_DETAILS
+        }
+}

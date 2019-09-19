@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getProductDetails} from '../../actions/index'
+import {clearProductDetails, getProductDetails} from '../../actions/index'
 import './product_details.scss';
 import Money from '../general/money';
 
-class ProductDetails extends Component {
 
+class ProductDetails extends Component {
 componentDidMount = () => {
 
  const productId =  this.props.match.params.product_id;
@@ -44,14 +44,21 @@ componentDidMount = () => {
                 </div>
              )
         }
+
+    componentWillUnmount = () => {
+        console.log('ProductDetails component about to unmount');
+        this.props.clearProductDetails();
+    }
 }
-const mapStateToProps = state => {
-    console.log('state', state.products.details);
-    return {
-        details: state.products.details
+
+    const mapStateToProps = state => {
+        console.log('state', state.products.details);
+             return {
+                details: state.products.details
     };
 }
 
 export default connect(mapStateToProps, {
-    getProductDetails: getProductDetails
+    getProductDetails: getProductDetails,
+    clearProductDetails: clearProductDetails
 }) (ProductDetails);
