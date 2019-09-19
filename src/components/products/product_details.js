@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {clearProductDetails, getProductDetails} from '../../actions/index'
+import {addItemToCart, clearProductDetails, getProductDetails} from '../../actions/index'
 import './product_details.scss';
 import Money from '../general/money';
 
@@ -27,7 +27,8 @@ decrementQuantity = () => {
 handleAddToCart = () => {
     const { id } = this.props.details;
     const { quantity } = this.state;
-    console.log('quantity & product id', `Add ${quantity} items to cart, with product ID: ${id}`);
+    // console.log('quantity & product id', `Add ${quantity} items to cart, with product ID: ${id}`);
+    this.props.addItemToCart(id, quantity);
 }
 
 componentDidMount = () => {
@@ -95,5 +96,6 @@ componentDidMount = () => {
 
 export default connect(mapStateToProps, {
     getProductDetails: getProductDetails,
-    clearProductDetails: clearProductDetails
+    clearProductDetails: clearProductDetails, 
+    addItemToCart: addItemToCart
 }) (ProductDetails);
