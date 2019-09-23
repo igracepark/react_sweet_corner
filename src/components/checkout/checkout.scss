@@ -1,0 +1,24 @@
+.guestInputField {
+    width: 310px;
+    height: 35px; 
+    color: gray;
+    margin-bottom: .5rem;
+    border: none;
+    border-radius: 2px;
+
+    &[name='firstName'] {
+        background-color: #e86b35;
+    }
+
+    &[name='lastName'] {
+        background-color: #f6b53e;
+    }
+
+    &[name='email'] {
+        background-color: #06b4af;
+    }
+}
+
+.guestButton {
+    background-color: hotpink; 
+}

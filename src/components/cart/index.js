@@ -45,7 +45,12 @@ class Cart extends Component {
                                 </td>
                                 <td className='align-middle' key={cartItems.productId}>{cartItems.name}</td>
                                 <td className='align-middle' key={cartItems.productId}>{Money(cartItems.each)}</td>
-                                <td className='center align-middle' key={cartItems.productId}>{cartItems.quantity}</td>
+                                <td className='center align-middle' key={cartItems.productId}>{cartItems.quantity}
+                                {/* <div> 
+                                <i className="material-icons">arrow_drop_up</i>
+                                <i className="material-icons">arrow_drop_down</i>
+                                </div> */}
+                                </td>
                                 <td className='align-middle' key={cartItems.productId}>{Money(cartItems.total)}</td>
                             </tr>
                         )}
@@ -54,7 +59,7 @@ class Cart extends Component {
                 <div className='row'>
                 <h3 className='col-md-8 text-right'>Cart Total:</h3>
                 <h3 className='col-md-2 text-center'>{items}</h3>
-                <h3 className='col-md-2 text-right'>{Money(cost)}</h3>
+                <h3 className='col-md-2 text-center'>{Money(cost)}</h3>
                 </div>
                 <div className='col text-center'>
                  <Link className='btn btn-primary btnCheckout' to='/checkout/guest'>Checkout As Guest</Link>
