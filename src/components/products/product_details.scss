@@ -30,16 +30,14 @@ div {
     background-color: hotpink;
     margin-bottom: 4px;
     margin-left: 20px;
+    color: white;
 }
 
 .btnSmall {
     background-color: hotpink;
     margin-bottom: 4px;
+    color: white;
 }
-
-// .btnArea {
- 
-// }
 
 .number {
     background-color: hotpink;
@@ -49,4 +47,16 @@ div {
     height: 38px;
     margin-left: 2%;
     margin-right: 2%;
+    color: white;
 }
+
+.table-hover tbody tr:hover td {
+    background: #ffebef;
+}
+
+.table {
+ 
+    // color: #401500;
+    // background-color: #FFDDCC;
+    border-color: hotpink;
+  }
