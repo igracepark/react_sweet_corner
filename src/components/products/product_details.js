@@ -5,6 +5,7 @@ import './product_details.scss';
 import Money from '../general/money';
 
 
+
 class ProductDetails extends Component {
     constructor(props){
         super(props);
@@ -24,11 +25,12 @@ decrementQuantity = () => {
     }
 }
 
-handleAddToCart = () => {
+handleAddToCart = async() => {
     const { id } = this.props.details;
     const { quantity } = this.state;
-    // console.log('quantity & product id', `Add ${quantity} items to cart, with product ID: ${id}`);
-    this.props.addItemToCart(id, quantity);
+    await this.props.addItemToCart(id, quantity);
+
+    this.props.history.push('/cart');
 }
 
 componentDidMount = () => {
@@ -69,10 +71,10 @@ componentDidMount = () => {
                             <h2>Quantity</h2>
                             <div className='controller'>
                                 <div className='row'>
-                            <button onClick={this.decrementQuantity} className="btn btn-quantity">-</button>
-                            <span className="number">{quantity}</span>
-                            <button onClick={this.incrementQuantity} className="btn btn-quantity">+</button>
-                            <button onClick={this.handleAddToCart} className="btn">Add To Cart</button>
+                            <button onClick={this.decrementQuantity} className="btn btnSmall col-md-1">-</button>
+                            <span className="number col-md-1">{quantity}</span>
+                            <button onClick={this.incrementQuantity} className="btn btnSmall col-md-1">+</button>
+                            <button onClick={this.handleAddToCart} className="btn btnAddCart col-md-4">Add To Cart</button>
                             </div>
                             </div>
                         </div>

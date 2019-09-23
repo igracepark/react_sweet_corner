@@ -39,7 +39,7 @@ export default props => (
             <Schedule/>
        </div>
     <div className='col-md-5'>
-         <img className='downdots-style'src={downdots}/>
+         <img className='downdots-style'src={downdots}/>    
    </div>
    </div>
    </div>

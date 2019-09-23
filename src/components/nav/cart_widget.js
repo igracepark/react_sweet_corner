@@ -22,7 +22,7 @@ class CartWidget extends Component {
             <li className="cart-widget">
                 <Link to="/cart">
                     <i className="material-icons">shopping_cart</i>
-                    <span className="cart-item-count">{itemCount}</span>
+                    <span className="cart-item-count">{itemCount===0 ? '' : itemCount}</span>
                 </Link>
             </li>
         )
