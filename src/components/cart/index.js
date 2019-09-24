@@ -39,13 +39,13 @@ class Cart extends Component {
 
                     <tbody>
                         {this.props.cartItems && this.props.cartItems.map(cartItems => 
-                            <tr>
+                            <tr key={cartItems.productId}>
                                 <td scope="row">
                                     <img className='cartImg' src={cartItems.thumbnail.url}/>
                                 </td>
-                                <td className='align-middle' key={cartItems.productId}>{cartItems.name}</td>
-                                <td className='align-middle' key={cartItems.productId}>{Money(cartItems.each)}</td>
-                                <td className='center align-middle' key={cartItems.productId}>{cartItems.quantity}
+                                <td className='align-middle'>{cartItems.name}</td>
+                                <td className='align-middle'>{Money(cartItems.each)}</td>
+                                <td className='center align-middle'>{cartItems.quantity}
                                 {/* <div> 
                                 <i className="material-icons">arrow_drop_up</i>
                                 <i className="material-icons">arrow_drop_down</i>
