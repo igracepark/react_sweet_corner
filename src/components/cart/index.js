@@ -14,15 +14,23 @@ class Cart extends Component {
         this.props.getActiveCart();
     }
 
+    componentDidCatch = (error) => {
+        console.log("error from component did catch: ", error)
+    }
+
     render() {
         // console.log('Cart Items-A:', this.props.cartItems);
         // console.log('Cart Total-A: ', this.props.cartTotals);
-
+        console.log("this.props.cartItems in render",this.props.cartItems)
+        
         if (!this.props.cartTotals) {
             return false;
             } 
-            const {cost, items} = this.props.cartTotals;
 
+            const {cost, items} = this.props.cartTotals;
+            
+            // const { productId, name, thumbnail: {url}, each, quantity } = this.props.cartItems;
+            
         return (
             <div>
                 <h1 className="center">Cart</h1>

@@ -90,7 +90,7 @@ export const getCartTotals = () => async dispatch => {
             type: types.GET_CART_TOTALS, 
             cart: response.data.total
         })
-        console.log('get cart totals response', response.data.total);
+        // console.log('get cart totals response', response.data.total);
     }
     catch {
     console.log('Error getting cart totals:', error);
@@ -99,9 +99,8 @@ export const getCartTotals = () => async dispatch => {
 
 export const createGuestOrder = guest => async dispatch => {
         try {
-            console.log('Create guest order, guest data:', guest);
+            // console.log('Create guest order, guest data:', guest);
             const cartToken = localStorage.getItem('sc-cart-token');
-            console.log('cart token:', cartToken);
             const axiosConfig = {
                 headers: {
                     'X-Cart-Token': cartToken
@@ -109,7 +108,6 @@ export const createGuestOrder = guest => async dispatch => {
             };
             const response = await axios.post(`${url}/orders/guest`,
         guest, axiosConfig);
-            console.log('checkout response: ', response);
        
                 localStorage.setItem('sc-cart-token', response.data.cartToken);
                 localStorage.clear();
@@ -124,9 +122,26 @@ export const createGuestOrder = guest => async dispatch => {
                     email: guest.email,
                     orderId: response.data.id
                 };
-
-             
             } catch (error) {
             console.log('Error with guest checkout:', error);
     }
+}
+
+
+export const getGuestOrderDetails = (orderId, email) => async dispatch => {
+try {
+    const response = await axios.get(`${url}/orders/guest/${orderId}`, {
+        params: {
+            email: email
+        }
+    })
+    dispatch({
+        type: types.GET_GUEST_ORDER_DETAILS,
+        orderDetails: response.data
+    })
+    console.log('RESPONSE: ', response.data);
+}
+    catch (error) {
+        console.log('Error with guest order details:', error);
+}
 }

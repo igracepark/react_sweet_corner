@@ -7,7 +7,7 @@ import {createGuestOrder} from '../../actions';
 class GuestCheckout extends Component {
     handleGuestCheckout = async(formValues) => {
       const orderInfo = await this.props.createGuestOrder(formValues);
-      console.log('Order Info: ', orderInfo);
+    //   console.log('Order Info: ', orderInfo);
       const redirectUrl = `/orders/guest/${orderInfo.orderId}?email=${orderInfo.email}`;
       this.props.history.push(redirectUrl);
     } 

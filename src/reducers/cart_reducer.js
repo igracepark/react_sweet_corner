@@ -34,6 +34,7 @@ export default (state = DEFAULT_STATE, action) => {
                 total: null
             };
 
+
         default:
             return state;
     }
