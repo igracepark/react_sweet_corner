@@ -27,6 +27,13 @@ export default (state = DEFAULT_STATE, action) => {
                 total: action.total 
             };  
 
+        case types.CREATE_GUEST_ORDER:
+            return {
+                cartId: null,
+                items: null,
+                total: null
+            };
+
         default:
             return state;
     }

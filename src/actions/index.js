@@ -96,3 +96,37 @@ export const getCartTotals = () => async dispatch => {
     console.log('Error getting cart totals:', error);
     }
 }
+
+export const createGuestOrder = guest => async dispatch => {
+        try {
+            console.log('Create guest order, guest data:', guest);
+            const cartToken = localStorage.getItem('sc-cart-token');
+            console.log('cart token:', cartToken);
+            const axiosConfig = {
+                headers: {
+                    'X-Cart-Token': cartToken
+                }
+            };
+            const response = await axios.post(`${url}/orders/guest`,
+        guest, axiosConfig);
+            console.log('checkout response: ', response);
+       
+                localStorage.setItem('sc-cart-token', response.data.cartToken);
+                localStorage.clear();
+                dispatch({
+                    type: types.CREATE_GUEST_ORDER, 
+                    order: {
+                        id: response.data.guest,
+                        message: response.data.message
+                    }
+                })
+                return {
+                    email: guest.email,
+                    orderId: response.data.id
+                };
+
+             
+            } catch (error) {
+            console.log('Error with guest checkout:', error);
+    }
+}

@@ -22,10 +22,10 @@ class Products extends Component {
         const productItems = products.map((product) => {
             return <ProductItem 
                         {...product} 
-                        key={Products.id}
+                        key={product.id}
                         goToDetails={this.goToDetails.bind(this, product.id)}
                         />
-});
+    });
 
         return (
             <div className='products'>
