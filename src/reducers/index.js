@@ -4,8 +4,6 @@ import productsReducer from './products_reducer';
 import cartReducer from './cart_reducer';
 import ordersReducer from './orders_reducer';
 
-
-
 const rootReducer = combineReducers({
     form: formReducer, 
     products: productsReducer,

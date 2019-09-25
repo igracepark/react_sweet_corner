@@ -8,9 +8,10 @@ export default (state = DEFAULT_STATE, action) => {
     switch(action.type) {
 
 case types.GET_GUEST_ORDER_DETAILS:
+    console.log('ACTION', action.orderDetails);
     return {
         ... state,
-        details: action
+        details: action.orderDetails
     }
 
         default:

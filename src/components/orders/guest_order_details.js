@@ -8,45 +8,39 @@ import './order_details.scss';
 class GuestOrderDetails extends Component {
     constructor(props){
         super(props);
-
     }
 
     componentDidMount = () => {
-    //    console.log('guest order details:', this.props);
         const {location} = this.props;
         const orderId = this.props.match.params.order_id;
         const query = queryToObject(location.search);
-        // console.log('Query Object:', query.email);
         this.props.getGuestOrderDetails(orderId, query.email);
 }
 
-componentDidCatch = (error) => {
-    console.log("error from component did catch: ", error)
+    componentDidCatch = (error) => {
+        console.log("error from component did catch: ", error)
 }
 
-render () {
-    console.log('this.props.details', this.props.details);
-    if (!this.props.details) {
-        return false;
+    render () {
+        console.log('this.props.details', this.props.details);
+        if (!this.props.details) {
+            return false;
     }
 
-    const {orderDetails} = this.props.details;
-    console.log('orderDetails', orderDetails);
-    console.log('STATUS' , orderDetails.status);
+        const {status, id, createdAt, itemCount, total, items} = this.props.details;
 
-    return(
-        <div>
-            <h1 className="center">Guest Order Details</h1>
-            <h1 className="center status">Status: {orderDetails.status}</h1>
-            <h3 className='center order'>Order #: {orderDetails.id}</h3>
-            <div className='center'>**Save order number to check order status in the future**</div>
-            <h5>Order Placed: {orderDetails.createdAt}</h5>
-            <h5>Order Total Items: {orderDetails.itemCount}</h5>
-            <h5 className='inline1'>Order Total Cost: {Money(orderDetails.total)}</h5>
-            <h3>Order Items:</h3>
+        return(
+            <div>
+                <h1 className="center">Guest Order Details</h1>
+                <h1 className="center status">Status: {status}</h1>
+                <h3 className='center order'>Order #: {id}</h3>
+                <div className='center'>**Save order number to check order status in the future**</div>
+                <h5>Order Placed: {createdAt}</h5>
+                <h5>Order Total Items: {itemCount}</h5>
+                <h5 className='inline1'>Order Total Cost: {Money(total)}</h5>
+                <h3>Order Items:</h3>
 
-
-            <table className="table">
+                <table className="table">
                     <thead>
                          <tr>
                             <th scope="col"></th>
@@ -58,8 +52,7 @@ render () {
                     </thead>
 
                     <tbody>
-                        {orderDetails.items && orderDetails.items.map(cartItems => 
-                        // console.log('Mapped cartItems', cartItems)
+                        {items && items.map(cartItems => 
                             <tr key={cartItems.id}>
                                 <td scope="row">
                                     <img className='cartImg' src={cartItems.product.thumbnail.url}/>
@@ -77,19 +70,19 @@ render () {
 
                 <div className='row'>
                 <h3 className='col-md-8 text-right'>Order Total:</h3>
-                <h3 className='col-md-2 text-center'>{orderDetails.itemCount}</h3>
-                <h3 className='col-md-2 text-center'>{Money(orderDetails.total)}</h3>
+                <h3 className='col-md-2 text-center'>{itemCount}</h3>
+                <h3 className='col-md-2 text-center'>{Money(total)}</h3>
                 </div>
-                </div>
-    )
-}
+            </div>
+        )
+    }
 }
 const mapStateToProps = state => {
-    console.log('state order details', state.orders.details);
+    console.log('state order details', state);
          return {
             details: state.orders.details
-};
-    }
+    };
+}
 
     export default connect(mapStateToProps, {
         getGuestOrderDetails: getGuestOrderDetails,
