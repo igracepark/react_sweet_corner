@@ -22,51 +22,49 @@ class GuestOrderDetails extends Component {
 }
 
     render () {
-        console.log('this.props.details', this.props.details);
+        // console.log('this.props.details', this.props.details);
         if (!this.props.details) {
             return false;
     }
 
-        const {status, id, createdAt, itemCount, total, items} = this.props.details;
+    const {status, id, createdAt, itemCount, total, items} = this.props.details;
 
-        return(
-            <div>
-                <h1 className="center">Guest Order Details</h1>
-                <h1 className="center status">Status: {status}</h1>
-                <h3 className='center order'>Order #: {id}</h3>
-                <div className='center'>**Save order number to check order status in the future**</div>
-                <h5>Order Placed: {createdAt}</h5>
-                <h5>Order Total Items: {itemCount}</h5>
-                <h5 className='inline1'>Order Total Cost: {Money(total)}</h5>
-                <h3>Order Items:</h3>
+    return(
+        <div>
+            <h1 className="center">Guest Order Details</h1>
+            <h1 className="center status">Status: {status}</h1>
+            <h3 className='center order'>Order #: {id}</h3>
+            <div className='center'>**Save order number to check order status in the future**</div>
+            <h5>Order Placed: {createdAt}</h5>
+            <h5>Order Total Items: {itemCount}</h5>
+            <h5 className='inline1'>Order Total Cost: {Money(total)}</h5>
+             <h3>Order Items:</h3>
 
-                <table className="table">
-                    <thead>
-                         <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Product</th>
-                            <th scope="col">Each</th>
-                            <th scope="col" className='center'>Quantity</th>
-                            <th scope="col">Total</th>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Each</th>
+                        <th scope="col" className='center'>Quantity</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {items && items.map(cartItems => 
+                        <tr key={cartItems.id}>
+                            <td scope="row">
+                                <img className='cartImg' src={cartItems.product.thumbnail.url}/>
+                            </td>
+                            <td className='align-middle'>{cartItems.product.name}</td>
+                            <td className='align-middle'>{Money(cartItems.each)}</td>
+                            <td className='center align-middle'>{cartItems.quantity}</td>
+                            <td className='align-middle'>{Money(cartItems.total)}</td>
                         </tr>
-                    </thead>
-
-                    <tbody>
-                        {items && items.map(cartItems => 
-                            <tr key={cartItems.id}>
-                                <td scope="row">
-                                    <img className='cartImg' src={cartItems.product.thumbnail.url}/>
-                                </td>
-                                <td className='align-middle'>{cartItems.product.name}</td>
-                                <td className='align-middle'>{Money(cartItems.each)}</td>
-                                <td className='center align-middle'>{cartItems.quantity}
-                        
-                                </td>
-                                <td className='align-middle'>{Money(cartItems.total)}</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+                    )}
+                </tbody>
+            </table>
 
                 <div className='row'>
                 <h3 className='col-md-8 text-right'>Order Total:</h3>
@@ -77,8 +75,7 @@ class GuestOrderDetails extends Component {
         )
     }
 }
-const mapStateToProps = state => {
-    console.log('state order details', state);
+    const mapStateToProps = state => {
          return {
             details: state.orders.details
     };

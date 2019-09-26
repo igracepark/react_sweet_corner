@@ -19,9 +19,7 @@ class Cart extends Component {
     }
 
     render() {
-        // console.log('Cart Items-A:', this.props.cartItems);
-        // console.log('Cart Total-A: ', this.props.cartTotals);
-        console.log("this.props.cartItems in render",this.props.cartItems)
+        // console.log("this.props.cartItems in render",this.props.cartItems)
         
         if (!this.props.cartTotals) {
             return false;
@@ -78,6 +76,7 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log('STATE CART ITEMS: ', state.cart.items)
     return {
         cartItems: state.cart.items,
         cartTotals: state.cart.total 
