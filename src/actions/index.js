@@ -161,8 +161,6 @@ export const removeProduct = (itemId) => async (dispatch) => {
     
         dispatch({
             type:  types.REMOVE_PRODUCT, 
-            // getActiveCart()
-            // remove: response.data
         })
         console.log('REMOVE RESPONSE', response);
 

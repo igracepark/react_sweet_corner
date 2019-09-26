@@ -98,8 +98,7 @@ const mapStateToProps = state => {
     console.log('STATE CART ITEMS: ', state)
     return {
         cartItems: state.cart.items,
-        cartTotals: state.cart.total, 
-        // remove: state
+        cartTotals: state.cart.total
     };
 }
 
