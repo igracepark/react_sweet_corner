@@ -13,6 +13,7 @@ import Cart from './cart';
 import GuestCheckout from '../components/checkout/guest_checkout';
 import GuestOrderDetails from '../components/orders/guest_order_details';
 
+
 const App = () => (
     <div className='app'>
         <div className='container'>
@@ -29,6 +30,7 @@ const App = () => (
             <Route path='/orders/guest/:order_id' component={GuestOrderDetails} />
             
             <Footer/>
+
         </div>
     </div>
 );

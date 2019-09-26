@@ -14,15 +14,21 @@ class Cart extends Component {
         this.props.getActiveCart();
     }
 
-    render() {
-        // console.log('Cart Items-A:', this.props.cartItems);
-        // console.log('Cart Total-A: ', this.props.cartTotals);
+    componentDidCatch = (error) => {
+        console.log("error from component did catch: ", error)
+    }
 
+    render() {
+        // console.log("this.props.cartItems in render",this.props.cartItems)
+        
         if (!this.props.cartTotals) {
             return false;
             } 
-            const {cost, items} = this.props.cartTotals;
 
+            const {cost, items} = this.props.cartTotals;
+            
+            // const { productId, name, thumbnail: {url}, each, quantity } = this.props.cartItems;
+            
         return (
             <div>
                 <h1 className="center">Cart</h1>
@@ -70,6 +76,7 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log('STATE CART ITEMS: ', state.cart.items)
     return {
         cartItems: state.cart.items,
         cartTotals: state.cart.total 

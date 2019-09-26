@@ -15,7 +15,8 @@ class Products extends Component {
 
     render() {
         const {products} = this.props;
-        console.log('products: ', products);
+        // console.log('PRODUCTS: ', products);
+        console.log('PROPS', this.props);
 
         // In the render method map over the products array, to create an array of ProductItem components. Use the spread, ..., operator to pass every key of the product object into the <ProductItem> component as a prop. Use the product id to set the key prop. Remember to save the array of <ProductItem /> components into a constant
 
@@ -41,6 +42,7 @@ class Products extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log('STATE', state);
     return {
         products: state.products.list
     };

@@ -10,7 +10,6 @@ class CartWidget extends Component {
     }
 
         render(){
-            console.log('Cart Widget Props:', this.props.total);
             const { total } = this.props;
             let itemCount = 0;
         

@@ -4,8 +4,6 @@ import {addItemToCart, clearProductDetails, getProductDetails} from '../../actio
 import './product_details.scss';
 import Money from '../general/money';
 
-
-
 class ProductDetails extends Component {
     constructor(props){
         super(props);
@@ -62,6 +60,7 @@ componentDidMount = () => {
                         <div className="product-details col-md-6">
                              <img className='productImg'src={details.image.url}/>
                         </div>
+                
                         <div className="textCol product-details col-md-6">
                             <h2>{details.name}</h2>
                             <div className='caption'>{details.caption}</div>
