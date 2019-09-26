@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import './cart.scss';
 import {connect} from 'react-redux';
-import {getActiveCart} from '../../actions/index';
+import {getActiveCart, removeProduct} from '../../actions/index';
 import Money from '../general/money';
 import { Link } from 'react-router-dom';
+
 
 class Cart extends Component {
     constructor(props){
@@ -12,15 +13,25 @@ class Cart extends Component {
 
     componentDidMount = () => {
         this.props.getActiveCart();
+        if (this.props.cartItems) {
+        const itemId = this.props.cartItems.itemId;
+        console.log('itemId', itemId);
+        }
     }
 
     componentDidCatch = (error) => {
         console.log("error from component did catch: ", error)
     }
 
+    handleRemove = async(itemId) => {
+        await this.props.removeProduct(itemId);
+        console.log('Remove itemId #:', itemId);
+        this.props.getActiveCart();
+}
+
     render() {
         // console.log("this.props.cartItems in render",this.props.cartItems)
-        
+
         if (!this.props.cartTotals) {
             return false;
             } 
@@ -40,6 +51,7 @@ class Cart extends Component {
                             <th scope="col">Each</th>
                             <th scope="col" className='center'>Quantity</th>
                             <th scope="col">Total</th>
+                            <th scope="col">Remove</th>
                         </tr>
                     </thead>
 
@@ -57,11 +69,18 @@ class Cart extends Component {
                                 <i className="material-icons">arrow_drop_down</i>
                                 </div> */}
                                 </td>
-                                <td className='align-middle' key={cartItems.productId}>{Money(cartItems.total)}</td>
+                                <td className='align-middle'>{Money(cartItems.total)}</td>
+                                <td className="center align-middle">
+
+                                <i className="material-icons" onClick={() => this.handleRemove(cartItems.itemId)}>
+                                delete_forever
+                                </i>
+                                </td>
                             </tr>
                         )}
-                    </tbody>        
+                    </tbody> 
                 </table>
+                 
                 <div className='row'>
                 <h3 className='col-md-8 text-right'>Cart Total:</h3>
                 <h3 className='col-md-2 text-center'>{items}</h3>
@@ -76,15 +95,16 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('STATE CART ITEMS: ', state.cart.items)
+    console.log('STATE CART ITEMS: ', state)
     return {
         cartItems: state.cart.items,
-        cartTotals: state.cart.total 
+        cartTotals: state.cart.total
     };
 }
 
 export default connect(mapStateToProps, {
     getActiveCart: getActiveCart,
+    removeProduct: removeProduct
 })(Cart);
 
 

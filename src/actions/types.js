@@ -6,6 +6,7 @@ export default {
     GET_ACTIVE_CART: 'get_active_cart', 
     GET_CART_TOTALS: 'get_cart_totals', 
     CREATE_GUEST_ORDER: 'create_guest_order',
-    GET_GUEST_ORDER_DETAILS: 'get_guest_order_details'
+    GET_GUEST_ORDER_DETAILS: 'get_guest_order_details', 
+    REMOVE_PRODUCT: 'remove_product'
 };
 
