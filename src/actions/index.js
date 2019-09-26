@@ -92,7 +92,7 @@ export const getCartTotals = () => async dispatch => {
         })
         // console.log('get cart totals response', response.data.total);
     }
-    catch {
+    catch (error) {
     console.log('Error getting cart totals:', error);
     }
 }
@@ -145,3 +145,29 @@ try {
         console.log('Error with guest order details:', error);
 }
 }
+
+export const removeProduct = (itemId) => async (dispatch) => {
+    const cartToken = localStorage.getItem('sc-cart-token');
+    const axiosConfig = {
+        headers: {
+            'X-Cart-Token': cartToken
+        }
+
+    };
+    console.log(axiosConfig)
+    try {
+        const response = await axios.delete(`${url}/cart/items/${itemId}`, axiosConfig)
+        // localStorage.setItem('sc-cart-token', response.data.cartToken);
+    
+        dispatch({
+            type:  types.REMOVE_PRODUCT, 
+            // getActiveCart()
+            // remove: response.data
+        })
+        console.log('REMOVE RESPONSE', response);
+
+    } catch (error) {
+        console.log("Error with remove product:", error);
+    }
+}
+
