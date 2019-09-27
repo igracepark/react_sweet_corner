@@ -169,3 +169,17 @@ export const removeProduct = (itemId) => async (dispatch) => {
     }
 }
 
+export const getFullProducts = () => async dispatch => {
+    try {
+        const response = await axios.get(`${url}/products/full`);
+        dispatch({
+            type: types.GET_FULL_PRODUCTS,
+            fullProducts: response.data
+        })
+        console.log('FULL RESPONSE', response);
+    }
+    catch(error) {
+        console.log('getAllProducts error: ', error);
+    }
+}
+

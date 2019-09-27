@@ -3,13 +3,17 @@ import {connect} from 'react-redux';
 import {addItemToCart, clearProductDetails, getProductDetails} from '../../actions/index'
 import './product_details.scss';
 import Money from '../general/money';
+import {AddModal} from '../../components/modal';
+import {Button, ButtonToolbar} from 'react-bootstrap';
+import Nutrition from '../nutrition';
 
 class ProductDetails extends Component {
     constructor(props){
         super(props);
     
         this.state = {
-            quantity: 1
+            quantity: 1,
+            addModalShow: false
         }
     }
 
@@ -46,6 +50,9 @@ componentDidMount = () => {
     render() {
         const {details} = this.props;
         const {quantity} = this.state;
+        let addModalClose = () => this.setState ({
+            addModalShow: false
+        });
         
         if (!details) {
             return (
@@ -60,12 +67,14 @@ componentDidMount = () => {
                         <div className="product-details col-md-6">
                              <img className='productImg'src={details.image.url}/>
                         </div>
-                
+                    
                         <div className="textCol product-details col-md-6">
                             <h2>{details.name}</h2>
                             <div className='caption'>{details.caption}</div>
                             <h3 className='description'>Description</h3>
                             <div>{details.description}</div>
+                            {/* <button onClick={Nutrition} className='btn'>Nutrition</button> */}
+                         
                             <h5 className='price'>{Money(details.cost)}</h5>
                             <h2>Quantity</h2>
                             <div className='controller'>
@@ -78,6 +87,21 @@ componentDidMount = () => {
                             </div>
                         </div>
                         </div>
+                        <div><Nutrition/></div>
+                        <ButtonToolbar>
+                            <Button
+                            className='modalButton'
+                            onClick={()=> this.setState({addModalShow:true})}
+                            >Enlarge Picture
+                            </Button>
+                        </ButtonToolbar>
+                        <AddModal
+                        show={this.state.addModalShow}
+                        onHide={addModalClose}
+                        src={details.image.url}
+                        name={details.name}
+                        caption={details.caption}
+                        />
                         </div>
                     )
                  }

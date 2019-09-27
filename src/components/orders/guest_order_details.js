@@ -22,7 +22,6 @@ class GuestOrderDetails extends Component {
 }
 
     render () {
-        // console.log('this.props.details', this.props.details);
         if (!this.props.details) {
             return false;
     }

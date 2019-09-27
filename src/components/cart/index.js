@@ -9,13 +9,12 @@ import { Link } from 'react-router-dom';
 class Cart extends Component {
     constructor(props){
         super(props);
-    }
-
+        }
+    
     componentDidMount = () => {
         this.props.getActiveCart();
         if (this.props.cartItems) {
         const itemId = this.props.cartItems.itemId;
-        console.log('itemId', itemId);
         }
     }
 
@@ -25,7 +24,6 @@ class Cart extends Component {
 
     handleRemove = async(itemId) => {
         await this.props.removeProduct(itemId);
-        console.log('Remove itemId #:', itemId);
         this.props.getActiveCart();
 }
 
@@ -51,7 +49,7 @@ class Cart extends Component {
                             <th scope="col">Each</th>
                             <th scope="col" className='center'>Quantity</th>
                             <th scope="col">Total</th>
-                            <th scope="col">Remove</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
 
@@ -59,7 +57,8 @@ class Cart extends Component {
                         {this.props.cartItems && this.props.cartItems.map(cartItems => 
                             <tr key={cartItems.productId}>
                                 <td scope="row">
-                                    <img className='cartImg' src={cartItems.thumbnail.url}/>
+                                    {/* <img className='cartImg' onClick={() => this.handleThumbnailClick(cartItems.productId)} src={cartItems.thumbnail.url}/> */}
+                                    <img className='cartImg' onClick={() =>  this.props.history.push(`/products/${cartItems.productId}`)} src={cartItems.thumbnail.url}/>
                                 </td>
                                 <td className='align-middle'>{cartItems.name}</td>
                                 <td className='align-middle'>{Money(cartItems.each)}</td>

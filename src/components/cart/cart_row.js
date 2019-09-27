@@ -1,0 +1,1 @@
+// to map and render the cart rows then import in cart index.js
