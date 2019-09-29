@@ -8,6 +8,9 @@ constructor(props) {
   }
 
 render() {
+
+    // const {type} = this.props
+
     return (
       <Modal
       {...this.props}
@@ -20,7 +23,11 @@ render() {
                 {this.props.name}
               </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            {/* {
+              type === 'cupcakePage' ?
+
+            } */}
+            <Modal.Body className='modalCaption'>
               <h4>{this.props.caption}</h4>
             <img className='rounded mx-auto d-block' src={this.props.src} alt=''/>
             </Modal.Body>
@@ -29,6 +36,5 @@ render() {
             </Modal.Footer>
           </Modal>
         );
-      
-}
+  }
 }

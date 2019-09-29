@@ -4,8 +4,9 @@ import {addItemToCart, clearProductDetails, getProductDetails} from '../../actio
 import './product_details.scss';
 import Money from '../general/money';
 import {AddModal} from '../../components/modal';
-import {Button, ButtonToolbar} from 'react-bootstrap';
+// import {Button, ButtonToolbar} from 'react-bootstrap';
 import Nutrition from '../nutrition';
+import HideText from '../hide_text';
 
 class ProductDetails extends Component {
     constructor(props){
@@ -13,10 +14,12 @@ class ProductDetails extends Component {
     
         this.state = {
             quantity: 1,
-            addModalShow: false
+            addModalShow: false,
+            nutritionShow: false
         }
     }
 
+    
 incrementQuantity = () => {
     this.setState({ count: this.state.quantity += 1 })
 }
@@ -53,6 +56,7 @@ componentDidMount = () => {
         let addModalClose = () => this.setState ({
             addModalShow: false
         });
+  
         
         if (!details) {
             return (
@@ -65,7 +69,10 @@ componentDidMount = () => {
                 <div>
                     <div className='row'>
                         <div className="product-details col-md-6">
-                             <img className='productImg'src={details.image.url}/>
+                             <img  className='productImg'src={details.image.url}/>
+                            <i onClick={()=> this.setState({addModalShow:true})} className="modalIcon material-icons">
+                            add_circle_outline
+                            </i>
                         </div>
                     
                         <div className="textCol product-details col-md-6">
@@ -73,9 +80,10 @@ componentDidMount = () => {
                             <div className='caption'>{details.caption}</div>
                             <h3 className='description'>Description</h3>
                             <div>{details.description}</div>
-                            {/* <button onClick={Nutrition} className='btn'>Nutrition</button> */}
-                         
-                            <h5 className='price'>{Money(details.cost)}</h5>
+                            
+                            <HideText text={<Nutrition/>}/>
+                            
+                            <h3 className='price'>{Money(details.cost)}</h3>
                             <h2>Quantity</h2>
                             <div className='controller'>
                                 <div className='row'>
@@ -87,19 +95,20 @@ componentDidMount = () => {
                             </div>
                         </div>
                         </div>
-                        <div><Nutrition/></div>
-                        <ButtonToolbar>
+                     
+                        {/* <ButtonToolbar>
                             <Button
                             className='modalButton'
                             onClick={()=> this.setState({addModalShow:true})}
                             >Enlarge Picture
                             </Button>
-                        </ButtonToolbar>
+                        </ButtonToolbar> */}
                         <AddModal
                         show={this.state.addModalShow}
                         onHide={addModalClose}
                         src={details.image.url}
-                        name={details.name}
+                        // name={details.name}
+                        name={`name: ${details.name}`} 
                         caption={details.caption}
                         />
                         </div>

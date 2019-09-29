@@ -7,38 +7,46 @@ export class Nutrition extends Component {
         super(props);
       }
 
-allergyCheck = (carbs, fat, sugar) => {
-
-}
-
       componentDidMount = () => {
         this.props.getFullProducts();
         }
 
         render() {
             if (!this.props.fullProducts) {
-                return (
-                    <div>
-                    Loading Message
-                    </div>
-                )
+                return false;
             }
 
             console.log('FULL PRODUCTS: ', this.props.fullProducts);
             const {dairy, gluten, nuts} = this.props.fullProducts.allergy;
             const {carbs, fat, sugar} = this.props.fullProducts.nutrition;
-            console.log('DAIRY', dairy);
+         
         
             return (
                 <div>
-                <div>Nutrition</div>
-                <div>Carbs: {carbs}</div>
-                <div>Fat: {fat}</div>
-                <div>Sugar: {sugar}</div>
-                <div>Allergy</div>
-                <div>Dairy: {dairy}</div>
-                <div>Gluten: {gluten}</div>
-                <div>Nuts: {nuts}</div>
+                    <div className='row'>
+                        <div className='col-md-3'>Nutrition:</div>
+                        <div className='col-md-3'>Carbs: {carbs}</div>
+                        <div className='col-md-3'>Fat: {fat}</div>
+                        <div className='col-md-3'>Sugar: {sugar}</div>
+                        </div>
+                        <div className='row align-middle'>
+                        <div className='col-md-3'>Allergy:</div>
+                        <div className='col-md-3'>
+                            Dairy: {dairy == true ?  
+                            <i className="material-icons">check</i> : 
+                            <i className="material-icons">close</i>}
+                        </div>
+                        <div className='col-md-3'>
+                            Gluten: {gluten == true ?  
+                            <i className="material-icons">check</i> : 
+                            <i className="material-icons">close</i>}
+                        </div>
+                        <div className='col-md-3'>
+                            Nuts: {nuts == true ?   
+                            <i className="material-icons">check</i> : 
+                            <i className="material-icons">close</i>}
+                        </div>
+                    </div>
                 </div>
             )
         }

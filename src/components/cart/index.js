@@ -71,7 +71,7 @@ class Cart extends Component {
                                 <td className='align-middle'>{Money(cartItems.total)}</td>
                                 <td className="center align-middle">
 
-                                <i className="material-icons" onClick={() => this.handleRemove(cartItems.itemId)}>
+                                <i className="material-icons removeIcon" onClick={() => this.handleRemove(cartItems.itemId)}>
                                 delete_forever
                                 </i>
                                 </td>
