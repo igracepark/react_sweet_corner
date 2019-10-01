@@ -4,18 +4,18 @@ import {connect} from 'react-redux';
 import {getActiveCart, removeProduct} from '../../actions/index';
 import Money from '../general/money';
 import { Link } from 'react-router-dom';
+import UpDownArrow from './upDownArrow';
 
 
 class Cart extends Component {
     constructor(props){
         super(props);
-    }
-
+        }
+    
     componentDidMount = () => {
         this.props.getActiveCart();
         if (this.props.cartItems) {
         const itemId = this.props.cartItems.itemId;
-        console.log('itemId', itemId);
         }
     }
 
@@ -25,7 +25,6 @@ class Cart extends Component {
 
     handleRemove = async(itemId) => {
         await this.props.removeProduct(itemId);
-        console.log('Remove itemId #:', itemId);
         this.props.getActiveCart();
 }
 
@@ -51,7 +50,7 @@ class Cart extends Component {
                             <th scope="col">Each</th>
                             <th scope="col" className='center'>Quantity</th>
                             <th scope="col">Total</th>
-                            <th scope="col">Remove</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
 
@@ -59,20 +58,21 @@ class Cart extends Component {
                         {this.props.cartItems && this.props.cartItems.map(cartItems => 
                             <tr key={cartItems.productId}>
                                 <td scope="row">
-                                    <img className='cartImg' src={cartItems.thumbnail.url}/>
+                                    <img className='cartImg' onClick={() =>  this.props.history.push(`/products/${cartItems.productId}`)} src={cartItems.thumbnail.url}/>
                                 </td>
                                 <td className='align-middle'>{cartItems.name}</td>
-                                <td className='align-middle'>{Money(cartItems.each)}</td>
-                                <td className='center align-middle'>{cartItems.quantity}
-                                {/* <div> 
-                                <i className="material-icons">arrow_drop_up</i>
-                                <i className="material-icons">arrow_drop_down</i>
-                                </div> */}
+                                <td className='align-middle'><Money money={cartItems.each}/>
                                 </td>
-                                <td className='align-middle'>{Money(cartItems.total)}</td>
+                                <td className='center align-middle'>{cartItems.quantity}
+                                <div> 
+                                {/* add up and down arrow here */}
+                                <UpDownArrow/>         
+                                </div>
+                                </td>
+                                <td className='align-middle'><Money money={cartItems.total}/></td>
                                 <td className="center align-middle">
 
-                                <i className="material-icons" onClick={() => this.handleRemove(cartItems.itemId)}>
+                                <i className="material-icons removeIcon" onClick={() => this.handleRemove(cartItems.itemId)}>
                                 delete_forever
                                 </i>
                                 </td>
@@ -84,7 +84,7 @@ class Cart extends Component {
                 <div className='row'>
                 <h3 className='col-md-8 text-right'>Cart Total:</h3>
                 <h3 className='col-md-2 text-center'>{items}</h3>
-                <h3 className='col-md-2 text-center'>{Money(cost)}</h3>
+                <h3 className='col-md-2 text-center'><Money money={cost}/></h3>
                 </div>
                 <div className='col text-center'>
                  <Link className='btn btn-primary btnCheckout' to='/checkout/guest'>Checkout As Guest</Link>

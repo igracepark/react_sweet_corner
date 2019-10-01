@@ -37,7 +37,7 @@ export const clearProductDetails = () => {
 
 export const addItemToCart = (productId, quantity) => async (dispatch) => {
     try{
-        const cartToken = localStorage.getItem('sc-cart-token');
+        const cartToken = await localStorage.getItem('sc-cart-token');
         const axiosConfig = {
             headers: {
                 'X-Cart-Token': cartToken
@@ -60,7 +60,7 @@ export const addItemToCart = (productId, quantity) => async (dispatch) => {
 
 export const getActiveCart = () => async dispatch => {
     try {
-        const cartToken = localStorage.getItem('sc-cart-token');
+        const cartToken = await localStorage.getItem('sc-cart-token');
         const axiosConfig = {
             headers: {
                 'X-Cart-Token': cartToken
@@ -79,7 +79,7 @@ export const getActiveCart = () => async dispatch => {
 
 export const getCartTotals = () => async dispatch => {
     try {
-        const cartToken = localStorage.getItem('sc-cart-token');
+        const cartToken = await localStorage.getItem('sc-cart-token');
         const axiosConfig = {
             headers: {
                 'X-Cart-Token': cartToken
@@ -88,7 +88,7 @@ export const getCartTotals = () => async dispatch => {
         const response = await axios.get(`${url}/cart/totals`, axiosConfig);
         dispatch ({
             type: types.GET_CART_TOTALS, 
-            cart: response.data.total
+            payload: response.data.total
         })
         // console.log('get cart totals response', response.data.total);
     }
@@ -99,7 +99,6 @@ export const getCartTotals = () => async dispatch => {
 
 export const createGuestOrder = guest => async dispatch => {
         try {
-            // console.log('Create guest order, guest data:', guest);
             const cartToken = localStorage.getItem('sc-cart-token');
             const axiosConfig = {
                 headers: {
@@ -139,7 +138,6 @@ try {
         type: types.GET_GUEST_ORDER_DETAILS,
         orderDetails: response.data
     })
-    console.log('RESPONSE: ', response.data);
 }
     catch (error) {
         console.log('Error with guest order details:', error);
@@ -152,9 +150,7 @@ export const removeProduct = (itemId) => async (dispatch) => {
         headers: {
             'X-Cart-Token': cartToken
         }
-
     };
-    console.log(axiosConfig)
     try {
         const response = await axios.delete(`${url}/cart/items/${itemId}`, axiosConfig)
         // localStorage.setItem('sc-cart-token', response.data.cartToken);
@@ -162,10 +158,44 @@ export const removeProduct = (itemId) => async (dispatch) => {
         dispatch({
             type:  types.REMOVE_PRODUCT, 
         })
-        console.log('REMOVE RESPONSE', response);
 
     } catch (error) {
         console.log("Error with remove product:", error);
+    }
+}
+
+export const getFullProducts = () => async dispatch => {
+    try {
+        const response = await axios.get(`${url}/products/full`);
+        dispatch({
+            type: types.GET_FULL_PRODUCTS,
+            fullProducts: response.data
+        })
+    }
+    catch(error) {
+        console.log('getAllProducts error: ', error);
+    }
+}
+
+export const updateCartItemQuantity = () => async dispatch => {
+    const cartToken = localStorage.getItem('sc-cart-token');
+    const axiosConfig = {
+        headers: {
+            'X-Cart-Token': cartToken
+        }
+    };
+    try {
+        const response = await axios.patch((`${url}/cart/item/${itemId}`, 
+        { quantity: quantity }, 
+        axiosConfig));
+        dispatch({
+            type: types.UPDATE_CART_ITEM_QUANTITY,
+            payload: response.data
+        })
+        console.log('UPDATE_CART_ITEM_QUANTITY RESPONSE', response);
+    }
+    catch(error) {
+        console.log('updateCartItemQuantity  error: ', error);
     }
 }
 

@@ -16,6 +16,7 @@ import GuestOrderDetails from '../components/orders/guest_order_details';
 
 const App = () => (
     <div className='app'>
+        {/* <div> */}
         <div className='container'>
             <Header/>
     

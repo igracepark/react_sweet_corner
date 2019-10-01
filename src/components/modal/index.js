@@ -1,29 +1,45 @@
 import React, {Component} from 'react';
-import {Modal} from 'react-bootstrap';
+import {Modal, Button} from 'react-bootstrap';
+import './modal.scss';
+import GoToCart from '../modal/goToCart';
+import ProductDetailsPage from '../modal/productDetailsPage';
 
 export class AddModal extends Component {
 constructor(props) {
     super(props);
-}
+  }
 
 render() {
+
+    const {type} = this.props
+
     return (
+      <Modal
+      {...this.props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+           {type === 'productDetailsPage' ? <ProductDetailsPage 
+           {...this.props}/> : <GoToCart {...this.props}/>
 
-<Modal.Dialog>
-  <Modal.Header closeButton>
-    <Modal.Title>Modal title</Modal.Title>
-  </Modal.Header>
+             /* <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                {this.props.name}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body className='modalCaption'>
+              <h4>{this.props.caption}</h4>
+            <img className='rounded mx-auto d-block' src={this.props.src} alt=''/>
+            </Modal.Body> */}
 
-  <Modal.Body>
-    <p>Modal body text goes here.</p>
-  </Modal.Body>
 
-  <Modal.Footer>
-    <Button variant="secondary">Close</Button>
-    <Button variant="primary">Save changes</Button>
-  </Modal.Footer>
-</Modal.Dialog>
-
-    )
+            <Modal.Footer>
+              <Button onClick={this.props.onHide}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+          
+        );
+    }
 }
-}
+

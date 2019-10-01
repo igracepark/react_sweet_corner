@@ -3,16 +3,24 @@ import {connect} from 'react-redux';
 import {addItemToCart, clearProductDetails, getProductDetails} from '../../actions/index'
 import './product_details.scss';
 import Money from '../general/money';
+import {AddModal} from '../../components/modal';
+// import {Button, ButtonToolbar} from 'react-bootstrap';
+import Nutrition from '../nutrition';
+import HideText from '../hide_text';
 
 class ProductDetails extends Component {
     constructor(props){
         super(props);
     
         this.state = {
-            quantity: 1
+            quantity: 1,
+            addModalShow: false,
+            nutritionShow: false,
+            addModalType: "productDetailsPage"
         }
     }
 
+    
 incrementQuantity = () => {
     this.setState({ count: this.state.quantity += 1 })
 }
@@ -27,8 +35,9 @@ handleAddToCart = async() => {
     const { id } = this.props.details;
     const { quantity } = this.state;
     await this.props.addItemToCart(id, quantity);
-
-    this.props.history.push('/cart');
+    this.toggleCartModal();
+console.log('this.props.history', this.props.history);
+    // this.props.history.push('/cart');
 }
 
 componentDidMount = () => {
@@ -43,9 +52,29 @@ componentDidMount = () => {
 //     }
 // }
 
+    toggleSpotlightModal = () => {
+        console.log("what is the state after clicking:", this.state)
+        this.setState({
+            addModalShow: true,
+            addModalType: 'productDetailsPage'
+        })
+    }
+
+    toggleCartModal = () => {
+        console.log("what is the state after clicking:", this.state)
+        this.setState({
+            addModalShow: true,
+            addModalType: 'goToCartPage'
+        })
+    }
+
     render() {
         const {details} = this.props;
         const {quantity} = this.state;
+        let addModalClose = () => this.setState ({
+            addModalShow: false
+        });
+  
         
         if (!details) {
             return (
@@ -58,15 +87,21 @@ componentDidMount = () => {
                 <div>
                     <div className='row'>
                         <div className="product-details col-md-6">
-                             <img className='productImg'src={details.image.url}/>
+                             <img  className='productImg'src={details.image.url}/>
+                            <i onClick={this.toggleSpotlightModal} className="modalIcon material-icons">
+                            add_circle_outline
+                            </i>
                         </div>
-                
+                    
                         <div className="textCol product-details col-md-6">
                             <h2>{details.name}</h2>
                             <div className='caption'>{details.caption}</div>
                             <h3 className='description'>Description</h3>
                             <div>{details.description}</div>
-                            <h5 className='price'>{Money(details.cost)}</h5>
+                            
+                            <HideText text={<Nutrition/>}/>
+                            
+                            <h3 className='price'><Money money={details.cost}/></h3>
                             <h2>Quantity</h2>
                             <div className='controller'>
                                 <div className='row'>
@@ -78,6 +113,23 @@ componentDidMount = () => {
                             </div>
                         </div>
                         </div>
+                     
+                        {/* <ButtonToolbar>
+                            <Button
+                            className='modalButton'
+                            onClick={()=> this.setState({addModalShow:true})}
+                            >Enlarge Picture
+                            </Button>
+                        </ButtonToolbar> */}
+                        <AddModal
+                            show={this.state.addModalShow}
+                            onHide={addModalClose}
+                            src={details.image.url}
+                            name={details.name}
+                            caption={details.caption}
+                            type={this.state.addModalType}
+                            history={this.props.history}
+                        />
                         </div>
                     )
                  }
