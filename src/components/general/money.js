@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default props => {
-    const dollar = props / 100;
+    const dollar = props.money / 100;
 
     return(
         <div className='d-inline'>

@@ -15,7 +15,8 @@ class ProductDetails extends Component {
         this.state = {
             quantity: 1,
             addModalShow: false,
-            nutritionShow: false
+            nutritionShow: false,
+            addModalType: "productDetailsPage"
         }
     }
 
@@ -34,8 +35,9 @@ handleAddToCart = async() => {
     const { id } = this.props.details;
     const { quantity } = this.state;
     await this.props.addItemToCart(id, quantity);
-
-    this.props.history.push('/cart');
+    this.toggleCartModal();
+console.log('this.props.history', this.props.history);
+    // this.props.history.push('/cart');
 }
 
 componentDidMount = () => {
@@ -49,6 +51,22 @@ componentDidMount = () => {
 //         getProductDetails(params.product_id);
 //     }
 // }
+
+    toggleSpotlightModal = () => {
+        console.log("what is the state after clicking:", this.state)
+        this.setState({
+            addModalShow: true,
+            addModalType: 'productDetailsPage'
+        })
+    }
+
+    toggleCartModal = () => {
+        console.log("what is the state after clicking:", this.state)
+        this.setState({
+            addModalShow: true,
+            addModalType: 'goToCartPage'
+        })
+    }
 
     render() {
         const {details} = this.props;
@@ -70,7 +88,7 @@ componentDidMount = () => {
                     <div className='row'>
                         <div className="product-details col-md-6">
                              <img  className='productImg'src={details.image.url}/>
-                            <i onClick={()=> this.setState({addModalShow:true})} className="modalIcon material-icons">
+                            <i onClick={this.toggleSpotlightModal} className="modalIcon material-icons">
                             add_circle_outline
                             </i>
                         </div>
@@ -83,7 +101,7 @@ componentDidMount = () => {
                             
                             <HideText text={<Nutrition/>}/>
                             
-                            <h3 className='price'>{Money(details.cost)}</h3>
+                            <h3 className='price'><Money money={details.cost}/></h3>
                             <h2>Quantity</h2>
                             <div className='controller'>
                                 <div className='row'>
@@ -104,12 +122,13 @@ componentDidMount = () => {
                             </Button>
                         </ButtonToolbar> */}
                         <AddModal
-                        show={this.state.addModalShow}
-                        onHide={addModalClose}
-                        src={details.image.url}
-                        // name={details.name}
-                        name={`name: ${details.name}`} 
-                        caption={details.caption}
+                            show={this.state.addModalShow}
+                            onHide={addModalClose}
+                            src={details.image.url}
+                            name={details.name}
+                            caption={details.caption}
+                            type={this.state.addModalType}
+                            history={this.props.history}
                         />
                         </div>
                     )

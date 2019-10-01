@@ -9,5 +9,6 @@ export default {
     GET_GUEST_ORDER_DETAILS: 'get_guest_order_details', 
     REMOVE_PRODUCT: 'remove_product', 
     GET_FULL_PRODUCTS: 'get_full_products',
+    UPDATE_CART_ITEM_QUANTITY: 'update_cart_item_quantity'
 };
 

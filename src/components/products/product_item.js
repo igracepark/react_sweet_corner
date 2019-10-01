@@ -11,7 +11,7 @@ export default (props) => {
                 <h5 className='cupcakeTitle'>{name}</h5>
                 <img src={thumbnail.url}/>
                 <div>{caption}</div>
-                <div>{Money(cost)}</div>
+                <div><Money money={cost}/></div>
             </div>
     )
 }
