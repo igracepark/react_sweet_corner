@@ -29,8 +29,6 @@ class Cart extends Component {
 }
 
     render() {
-        // console.log("this.props.cartItems in render",this.props.cartItems)
-
         if (!this.props.cartTotals) {
             return false;
             } 

@@ -36,8 +36,6 @@ handleAddToCart = async() => {
     const { quantity } = this.state;
     await this.props.addItemToCart(id, quantity);
     this.toggleCartModal();
-console.log('this.props.history', this.props.history);
-    // this.props.history.push('/cart');
 }
 
 componentDidMount = () => {
@@ -135,13 +133,11 @@ componentDidMount = () => {
                  }
 
     componentWillUnmount = () => {
-        console.log('ProductDetails component about to unmount');
         this.props.clearProductDetails();
     }
 }
 
     const mapStateToProps = state => {
-        console.log('state', state.products.details);
              return {
                 details: state.products.details
     };

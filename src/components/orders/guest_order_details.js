@@ -15,7 +15,8 @@ class GuestOrderDetails extends Component {
         const orderId = this.props.match.params.order_id;
         const query = queryToObject(location.search);
         this.props.getGuestOrderDetails(orderId, query.email);
-}
+        console.log('query email', query.email);
+    }
 
     componentDidCatch = (error) => {
         console.log("error from component did catch: ", error)
@@ -36,7 +37,7 @@ class GuestOrderDetails extends Component {
             <div className='center'>**Save order number to check order status in the future**</div>
             <h5>Order Placed: {createdAt}</h5>
             <h5>Order Total Items: {itemCount}</h5>
-            <h5 className='inline1'>Order Total Cost: {Money(total)}</h5>
+            <h5 className='inline1'>Order Total Cost: <Money money={total}/></h5>
              <h3>Order Items:</h3>
 
             <table className="table">
@@ -57,9 +58,9 @@ class GuestOrderDetails extends Component {
                                 <img className='cartImg' src={cartItems.product.thumbnail.url}/>
                             </td>
                             <td className='align-middle'>{cartItems.product.name}</td>
-                            <td className='align-middle'>{Money(cartItems.each)}</td>
+                            <td className='align-middle'><Money money={cartItems.each}/></td>
                             <td className='center align-middle'>{cartItems.quantity}</td>
-                            <td className='align-middle'>{Money(cartItems.total)}</td>
+                            <td className='align-middle'><Money money={cartItems.total}/></td>
                         </tr>
                     )}
                 </tbody>
@@ -68,7 +69,7 @@ class GuestOrderDetails extends Component {
                 <div className='row'>
                 <h3 className='col-md-8 text-right'>Order Total:</h3>
                 <h3 className='col-md-2 text-center'>{itemCount}</h3>
-                <h3 className='col-md-2 text-center'>{Money(total)}</h3>
+                <h3 className='col-md-2 text-center'><Money money={total}/></h3>
                 </div>
             </div>
         )

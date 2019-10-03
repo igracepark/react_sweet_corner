@@ -71,6 +71,7 @@ export const getActiveCart = () => async dispatch => {
             type: types.GET_ACTIVE_CART, 
             cart: response.data
         })
+        console.log('get active cart', response.data);
     }
     catch (error) {
         console.log('Get Active Cart Error', error);
@@ -90,7 +91,6 @@ export const getCartTotals = () => async dispatch => {
             type: types.GET_CART_TOTALS, 
             payload: response.data.total
         })
-        // console.log('get cart totals response', response.data.total);
     }
     catch (error) {
     console.log('Error getting cart totals:', error);
@@ -129,10 +129,10 @@ export const createGuestOrder = guest => async dispatch => {
 
 export const getGuestOrderDetails = (orderId, email) => async dispatch => {
 try {
-    const response = await axios.get(`${url}/orders/guest/${orderId}`, {
-        params: {
-            email: email
-        }
+    const response = await axios.get(`${url}/orders/guest/${orderId}?email=${email}`, {
+        // params: {
+        //     email: email
+        // }
     })
     dispatch({
         type: types.GET_GUEST_ORDER_DETAILS,
