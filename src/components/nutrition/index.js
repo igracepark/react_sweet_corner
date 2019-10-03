@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getFullProducts} from '../../actions';
+import {getSingleDetails} from '../../actions';
 import {connect} from 'react-redux';
 
 export class Nutrition extends Component {
@@ -8,18 +8,16 @@ export class Nutrition extends Component {
       }
 
       componentDidMount = () => {
-        this.props.getFullProducts();
+        this.props.getSingleDetails();
         }
 
         render() {
-            if (!this.props.fullProducts) {
+            if (!this.props.singleDetails) {
                 return false;
             }
 
-            console.log('FULL PRODUCTS: ', this.props.fullProducts);
-            const {dairy, gluten, nuts} = this.props.fullProducts.allergy;
-            const {carbs, fat, sugar} = this.props.fullProducts.nutrition;
-         
+            const {dairy, gluten, nuts} = this.props.singleDetails.allergy;
+            const {carbs, fat, sugar} = this.props.singleDetails.nutrition;
         
             return (
                 <div>
@@ -55,11 +53,11 @@ export class Nutrition extends Component {
     const mapStateToProps = state => {
         console.log('state products details', state.products.details);
              return {
-                fullProducts: state.products.details
+                singleDetails: state.products.details
     };
 }
 
     export default connect(mapStateToProps, {
-        getFullProducts: getFullProducts,
+    getSingleDetails: getSingleDetails
     })(Nutrition);
     

@@ -164,18 +164,35 @@ export const removeProduct = (itemId) => async (dispatch) => {
     }
 }
 
-export const getFullProducts = () => async dispatch => {
+// export const getFullProducts = () => async dispatch => {
+//     try {
+//         const response = await axios.get(`${url}/products/full`);
+//         dispatch({
+//             type: types.GET_FULL_PRODUCTS,
+//             fullProducts: response.data
+//         })
+//     }
+//     catch(error) {
+//         console.log('getAllProducts error: ', error);
+//     }
+// }
+
+export const getSingleDetails = () => async dispatch => {
     try {
-        const response = await axios.get(`${url}/products/full`);
+        const response = await axios.get(`${url}/products/${productId}`);
         dispatch({
-            type: types.GET_FULL_PRODUCTS,
-            fullProducts: response.data
+            type: types.GET_SINGLE_DETAILS,
+            payload: response.data
         })
     }
     catch(error) {
-        console.log('getAllProducts error: ', error);
+        console.log('getSingleDetails error: ', error);
     }
 }
+
+
+
+
 
 export const updateCartItemQuantity = () => async dispatch => {
     const cartToken = localStorage.getItem('sc-cart-token');

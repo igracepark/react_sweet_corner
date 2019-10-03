@@ -6,7 +6,6 @@ import Money from '../general/money';
 import { Link } from 'react-router-dom';
 import UpDownArrow from './upDownArrow';
 
-
 class Cart extends Component {
     constructor(props){
         super(props);

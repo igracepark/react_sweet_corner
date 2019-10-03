@@ -8,7 +8,7 @@ export default {
     CREATE_GUEST_ORDER: 'create_guest_order',
     GET_GUEST_ORDER_DETAILS: 'get_guest_order_details', 
     REMOVE_PRODUCT: 'remove_product', 
-    GET_FULL_PRODUCTS: 'get_full_products',
+    GET_SINGLE_DETAILS: 'get_single_details',
     UPDATE_CART_ITEM_QUANTITY: 'update_cart_item_quantity'
 };
 
