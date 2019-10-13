@@ -1,24 +1,28 @@
-$textColor1: black;
-$textColor2: hotpink;
-$btnColor1: hotpink;
-
+@import "../css/colors.scss";
 
 .app {
     .center {
         text-align: center;
     }
 
-.container {
-    margin: 0 auto;
-    width: 1000px;
+    .container {
+        margin: 0 auto;
+        width: 1000px;
     }
 }
 
-.brown {
-    color: #754b23;
+div {
+    h3 {
+        line-height: 400%;
+        color: $pinkHot;
+    }
+
+    p {
+        color: black;
+    }
 }
 
 @font-face {
     font-family: allura-regular;
-    src: url('../../assets/fonts/Allura-Regular.ttf');
+    src: url("../../assets/fonts/Allura-Regular.ttf");
 }
